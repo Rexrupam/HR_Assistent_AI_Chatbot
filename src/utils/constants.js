@@ -1,1 +1,1 @@
-export const db_name = 'erm_db'
+export const db_name = 'aichatbot'
