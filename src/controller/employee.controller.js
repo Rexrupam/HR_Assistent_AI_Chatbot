@@ -5,8 +5,13 @@ import similarity from "compute-cosine-similarity";
 async function computeSimilarity(embedding) {
     const findAllEmployee = await Employees.find()
 
-     return findAllEmployee
-    
+    return findAllEmployee
+    .filter(employee=> employee.embedding && employee.embedding.length)
+    .map(employee=>({
+        employee,
+        score: similarity(employee.embedding,embedding)
+    }))
+    .sort((a,b)=>b.score-a.score)
 
 }
 
